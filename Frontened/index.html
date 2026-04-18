@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Emergency Home Service</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h1>🚨 Emergency Home Service</h1>
+
+<div class="form">
+    <input id="userId" placeholder="User ID">
+    <select id="serviceType">
+    <option value="Electrician">Electrician</option>
+    <option value="Plumber">Plumber</option>
+    <option value="Carpenter">Carpenter</option>
+    <option value="Doctor">Doctor</option>
+    <option value="Mechanic">Mechanic</option>
+    <option value="Cleaning">Cleaning Service</option>
+</select>
+    <button onclick="sendRequest()">Send Request</button>
+</div>
+
+<br>
+
+<!-- NAVIGATION -->
+<button onclick="goToAdmin()">Go to Admin Panel</button>
+<button onclick="loadRequests()">Load Requests</button>
+
+<!-- TABLE -->
+<table border="1" id="table">
+    <tr>
+        <th>ID</th>
+        <th>User ID</th>
+        <th>Service Type</th>
+        <th>Status</th>
+    </tr>
+</table>
+
+<script>
+function goToAdmin() {
+    window.location.href = "admin.html";
+}
+</script>
+
+<script src="app.js"></script>
+
+</body>
+</html>

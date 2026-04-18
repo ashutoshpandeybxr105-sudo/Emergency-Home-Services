@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Panel - Emergency Service</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+        }
+
+        table {
+            margin: auto;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+        }
+
+        button {
+            padding: 5px;
+            margin: 2px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>⚙️ Admin Panel</h1>
+
+<button onclick="loadRequests()">Reload Requests</button>
+
+<table border="1" id="table">
+    <tr>
+        <th>ID</th>
+        <th>User ID</th>
+        <th>Service Type</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+</table>
+
+<script>
+const API = "http://localhost:8080/api";
+
+/* ========================
+   AUTO LOAD ON PAGE OPEN
+======================== */
+window.onload = function() {
+    loadRequests();
+};
+
+/* ========================
+   LOAD REQUESTS
+======================== */
+function loadRequests() {
+    fetch(API + "/requests")
+    .then(res => res.json())
+    .then(data => {
+
+        let table = document.getElementById("table");
+
+        table.innerHTML = `
+        <tr>
+            <th>ID</th>
+            <th>User ID</th>
+            <th>Service Type</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>`;
+
+        data.forEach(req => {
+
+            let color = req.status === "COMPLETED" ? "green" : "orange";
+
+            table.innerHTML += `
+            <tr>
+                <td>${req.id}</td>
+                <td>${req.userId}</td>
+                <td>${req.serviceType}</td>
+                <td style="color:${color}; font-weight:bold">
+                    ${req.status}
+                </td>
+                <td>
+                    <button onclick="markCompleted(${req.id})">
+                        Mark Completed
+                    </button>
+                </td>
+            </tr>`;
+        });
+    });
+}
+
+/* ========================
+   UPDATE STATUS
+======================== */
+function markCompleted(id) {
+    fetch(API + "/request/" + id + "?status=COMPLETED", {
+        method: "PUT"
+    })
+    .then(res => res.json())
+    .then(() => {
+        alert("Marked as COMPLETED");
+
+        // reload admin table
+        loadRequests();
+    });
+}
+</script>
+
+</body>
+</html>
