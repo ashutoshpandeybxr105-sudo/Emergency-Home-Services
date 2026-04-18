@@ -61,13 +61,15 @@ The project is built using **Spring Boot (Backend)** and **HTML/CSS/JavaScript (
 
 ## 🧪 Sample JSON Request
 
-```json
 {
   "userId": 101,
   "serviceType": "Electrician"
 }
-🚀 How to Run the Project
-1️⃣ Backend (Spring Boot)
+
+## 🚀 How to Run the Project
+
+### 1️⃣ Backend (Spring Boot)
+```bash
 mvn spring-boot:run
 
 Make sure MySQL is running and database is configured in:
@@ -111,7 +113,8 @@ Payment gateway integration
 Live service tracking (GPS)
 Chat between user and service provider
 👨‍💻 Author
-Name- Ashutosh Pandey
+
+Name: Ashutosh Pandey
 Student Project – Full Stack Development (Spring Boot + Frontend Integration)
 
 ⭐ Output
